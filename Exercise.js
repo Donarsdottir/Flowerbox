@@ -46,35 +46,3 @@ btns.forEach((element, i) => {
     calculateTotal();
   });
 });
-
-const addToCart = (index) => {
-  if (cart.find((val) => val.name == flowers[index].name)) {
-    flowers[index].qtty++;
-  } else {
-    cart.push(flowers[index]);
-  }
-};
-
-function showCart() {
-  document.getElementById("cart").innerHTML = "";
-  for (let val of cart) {
-    document.getElementById("cart").innerHTML += `
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <img src="${val.image}" width="100" height="100">
-                <p>${val.name}</p>
-                <button class="btn btn-warning">-</button>
-                <p>${val.qtty}</p>
-                <button class="btn btn-warning">+</button>
-                <button class="btn btn-danger">X</button>
-            </div>
-        `;
-  }
-}
-
-function calculateTotal() {
-  let total = 0;
-  for (let val of cart) {
-    total = total + val.price * val.qtty;
-  }
-  document.getElementById("total").innerHTML = total.toFixed(2) + " €";
-}
